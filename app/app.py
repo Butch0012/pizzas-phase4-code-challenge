@@ -59,6 +59,10 @@ def create_restaurant_pizza():
     pizza_id = data.get('pizza_id')
     restaurant_id = data.get('restaurant_id') 
 
+    # Validate price
+    if not (1 <= price <= 30):
+        return jsonify({'errors': ['Validation error: Price must be between 1 and 30']}), 400
+
 
 if __name__ == '__main__':
     app.run(port=5555)
