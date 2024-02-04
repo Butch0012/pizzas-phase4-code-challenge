@@ -72,7 +72,9 @@ def create_restaurant_pizza():
     restaurant_pizza = RestaurantPizza(price=price, pizza=pizza, restaurant=restaurant)
     db.session.add(restaurant_pizza)
     db.session.commit()
-
+# Return the data related to the Pizza
+    result = pizza_schema.dump(pizza)
+    return jsonify(result), 201  # JSON response with status code 201 for successful creation
 
 if __name__ == '__main__':
     app.run(port=5555)
