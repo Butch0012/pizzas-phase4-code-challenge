@@ -77,4 +77,6 @@ def create_restaurant_pizza():
     return jsonify(result), 201  # JSON response with status code 201 for successful creation
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(port=5555)
