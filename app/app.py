@@ -13,9 +13,14 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
-@app.route('/')
-def home():
-    return ''
+# Routes
+
+# Get all restaurants
+@app.route('/restaurants', methods=['GET'])
+def get_restaurants():
+    restaurants = Restaurant.query.all()
+    result = restaurant_schema.dump(restaurants)
+    return jsonify(result)
 
 
 if __name__ == '__main__':
