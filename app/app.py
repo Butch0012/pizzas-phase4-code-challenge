@@ -68,6 +68,10 @@ def create_restaurant_pizza():
 
     if not pizza or not restaurant:
         return jsonify({'errors': ['Validation error: Pizza or Restaurant not found']}), 400
+    # Create RestaurantPizza
+    restaurant_pizza = RestaurantPizza(price=price, pizza=pizza, restaurant=restaurant)
+    db.session.add(restaurant_pizza)
+    db.session.commit()
 
 
 if __name__ == '__main__':
