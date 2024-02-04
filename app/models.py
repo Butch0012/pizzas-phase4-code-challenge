@@ -21,3 +21,5 @@ class Pizza(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)  # Pizza name
+    ingredients = db.Column(db.String(200), nullable=False)  # Pizza ingredients
+    restaurants = db.relationship('RestaurantPizza', backref='pizza', lazy=True)  # Relationship with RestaurantPizza model
