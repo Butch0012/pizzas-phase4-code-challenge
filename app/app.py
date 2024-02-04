@@ -50,7 +50,14 @@ def delete_restaurant(id):
 def get_pizzas():
     pizzas = Pizza.query.all()
     result = pizza_schema.dump(pizzas)
-    return jsonify(result)   
+    return jsonify(result)  
+# Create a new RestaurantPizza (association of Pizza and Restaurant with a price)
+@app.route('/restaurant_pizzas', methods=['POST'])
+def create_restaurant_pizza():
+    data = request.json
+    price = data.get('price')
+    pizza_id = data.get('pizza_id')
+    restaurant_id = data.get('restaurant_id') 
 
 
 if __name__ == '__main__':
