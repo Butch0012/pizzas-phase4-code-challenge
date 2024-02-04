@@ -1,4 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
+db = SQLAlchemy()
+ma = Marshmallow()
 
 db = SQLAlchemy()
 
@@ -31,3 +34,10 @@ class RestaurantPizza(db.Model):
     price = db.Column(db.Float, nullable=False)  # Price of the pizza in the restaurant
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)  # Foreign key relationship with Pizza model
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)  # Foreign key relationship with Restaurant model    
+class RestaurantSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Restaurant
+
+class PizzaSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Pizza
