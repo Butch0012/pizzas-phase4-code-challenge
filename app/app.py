@@ -22,6 +22,16 @@ def get_restaurants():
     result = restaurant_schema.dump(restaurants)
     return jsonify(result)
 
+# Get a specific restaurant by ID
+@app.route('/restaurants/<int:id>', methods=['GET'])
+def get_restaurant(id):
+    restaurant = Restaurant.query.get(id)
+    if restaurant:
+        result = restaurant_schema.dump(restaurant)
+        return jsonify(result)
+    else:
+        return jsonify({'error': 'Restaurant not found'}), 404
+
 
 if __name__ == '__main__':
     app.run(port=5555)
