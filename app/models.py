@@ -23,3 +23,11 @@ class Pizza(db.Model):
     name = db.Column(db.String(50), nullable=False)  # Pizza name
     ingredients = db.Column(db.String(200), nullable=False)  # Pizza ingredients
     restaurants = db.relationship('RestaurantPizza', backref='pizza', lazy=True)  # Relationship with RestaurantPizza model
+
+class RestaurantPizza(db.Model):
+    __tablename__ = 'restaurant_pizzas'
+
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Float, nullable=False)  # Price of the pizza in the restaurant
+    pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)  # Foreign key relationship with Pizza model
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)  # Foreign key relationship with Restaurant model    
