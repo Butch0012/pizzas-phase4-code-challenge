@@ -44,6 +44,13 @@ def delete_restaurant(id):
         return '', 204  # Empty response with status code 204 for successful deletion
     else:
         return jsonify({'error': 'Restaurant not found'}), 404
+    
+ # Get all pizzas
+@app.route('/pizzas', methods=['GET'])
+def get_pizzas():
+    pizzas = Pizza.query.all()
+    result = pizza_schema.dump(pizzas)
+    return jsonify(result)   
 
 
 if __name__ == '__main__':
