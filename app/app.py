@@ -62,6 +62,12 @@ def create_restaurant_pizza():
     # Validate price
     if not (1 <= price <= 30):
         return jsonify({'errors': ['Validation error: Price must be between 1 and 30']}), 400
+    # Check if Pizza and Restaurant exist
+    pizza = Pizza.query.get(pizza_id)
+    restaurant = Restaurant.query.get(restaurant_id)
+
+    if not pizza or not restaurant:
+        return jsonify({'errors': ['Validation error: Pizza or Restaurant not found']}), 400
 
 
 if __name__ == '__main__':
